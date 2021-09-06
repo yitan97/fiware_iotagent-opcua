@@ -1,0 +1,85 @@
+version: "3"
+
+services:
+  iotcarsrv:
+    hostname: iotcarsrv
+    image: iotagent4fiware/opcuacarsrv:latest
+    volumes:
+      - ./CARCONF/car_config.json:/opt/opc-ua-car-server/Car/Car1/config/car_config.json
+    networks:
+      - hostnet
+    ports:
+      - "5001:5001"
+
+  iotage:
+    hostname: iotage
+    image: iotagent4fiware/iotagent-opcua:latest
+    networks:
+      - hostnet
+      - iotnet
+    ports:
+      - "4001:4001"
+      - "4081:8080"
+    depends_on:
+      - iotcarsrv
+      - iotmongo
+      - orion
+    volumes:
+      - ./AGECONF:/opt/iotagent-opcua/conf
+      - ./certificates:/opt/iotagent-opcua/certificates
+    command: npm start
+    environment:
+      - IOTA_REGISTRY_TYPE=mongodb #Whether to hold IoT device info in memory or in a database
+      - IOTA_LOG_LEVEL=DEBUG # The log level of the IoT Agent
+      - IOTA_MONGO_HOST=iot_mongo # The host name of MongoDB
+      - IOTA_MONGO_DB=iotagent_opcua # The name of the database used in mongoDB
+      - IOTA_CB_NGSI_VERSION=ld # use NGSI-LD when sending updates for active attributes
+      - IOTA_JSON_LD_CONTEXT=https://uri.etsi.org/ngsi-ld/v1/ngsi-ld-core-context-v1.3.jsonld
+      - IOTA_FALLBACK_TENANT=opcua_car
+      - IOTA_RELAX_TEMPLATE_VALIDATION=true
+
+  iotmongo:
+    hostname: iot_mongo
+    image: mongo:4.2
+    networks:
+      - iotnet
+    volumes:
+      - iot_mongo_data:/data/db
+      - iot_mongo_conf:/data/configdb
+
+  ################ OCB ################
+
+  orion:
+    hostname: orion
+    image: fiware/orion:latest
+    networks:
+      - hostnet
+      - ocbnet
+    ports:
+      - "1026:1026"
+    depends_on:
+      - orion_mongo
+    command: -statCounters -dbhost orion_mongo -logForHumans -logLevel INFO #-t 255
+
+  orion_mongo:
+    hostname: orion_mongo
+    image: mongo:4.2
+    networks:
+      - ocbnet
+    ports:
+      - "27017:27017"
+    volumes:
+      - orion_mongo_data:/data/db
+      - orion_mongo_conf:/data/configdb
+    command: --nojournal
+
+volumes:
+  iot_mongo_data:
+  iot_mongo_conf:
+  orion_mongo_data:
+  orion_mongo_conf:
+
+networks:
+  hostnet:
+  iotnet:
+  ocbnet:
