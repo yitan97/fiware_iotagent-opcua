@@ -92,9 +92,3 @@ Comentando en la sección `orion/command` la parte final `-t 255`, se solucionan
 ```
 
 
-Se procede a acceder al contenedor en cuestión.
-Para ello se ejecutal el comando:
-```sh
-$ docker run --rm -it 
-
-
