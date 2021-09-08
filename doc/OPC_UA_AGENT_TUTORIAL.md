@@ -14,8 +14,12 @@ Para lanzar el Testbed ejecutar el comando:
 ```sh
 $ docker-compose up -d
 ```
+>**Nota:** Para ver logs omitir -d en el comando anterior, o bien ejecutar
+ ```sh
+ $ docker-compose logs -f
+ ```
 ### Error docker-compose up
-Al realizar el comando `docker-compose up -d` se probocan varios errores
+Al realizar el comando `docker-compose up -d` se provocan varios errores
 1. Error en OrionCB
 ```sh
 orion_1        | INFO@2021-09-06T18:14:51.452Z  contextBroker.cpp[1012]: start command line </usr/bin/contextBroker -fg -multiservice -ngsiv1Autocast -disableFileLog -statCounters -dbhost orion_mongo -logForHumans -logLevel INFO -t 255>
@@ -90,5 +94,24 @@ Comentando en la sección `orion/command` la parte final `-t 255`, se solucionan
       - orion_mongo
     command: -statCounters -dbhost orion_mongo -logForHumans -logLevel INFO #-t 255
 ```
+
+## Dispositivos en iotAgent
+Para comprobar los dispositivos vinculados al iotAgent desde la terminal, introducir:
+```sh
+curl http://localhost:4001/iot/devices \
+     -H "fiware-service: opcua_car" \
+     -H "fiware-servicepath: /demo"
+```
+Devolverá algo similar a:
+```json
+{"count":1,"devices":[{"device_id":"age01_Car","service":"opcua_car","service_path":"/demo","entity_name":"age01_Car","entity_type":"Device","endpoint":"opc.tcp://iotcarsrv:5001/UA/CarServer","attributes":[{"object_id":"Acceleration","name":"Acceleration","type":"Number"},{"object_id":"EngineStopped","name":"EngineStopped","type":"Boolean"},{"object_id":"Engine_Temperature","name":"Engine_Temperature","type":"Number"},{"object_id":"Engine_Oxigen","name":"Engine_Oxigen","type":"Number"},{"object_id":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xBusy","name":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xBusy","type":"String"},{"object_id":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xBusyStatus","name":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xBusyStatus","type":"Boolean"},{"object_id":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xDone","name":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xDone","type":"String"},{"object_id":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xDoneStatus","name":"DataBlocksGlobal_3_dbRfidCntr_3_ID1_3_xDoneStatus","type":"Boolean"}],"lazy":[],"commands":[{"object_id":"ns=3;s=Stop","name":"Stop","type":"command"},{"object_id":"ns=3;s=Accelerate","name":"Accelerate","type":"command"}],"static_attributes":[]}]}
+```
+
+Se puede comprobar los datos en la base de datos MongoDb en mongo, por ejemplo con MongoDB Compass.
+Hay que conectarse a `localhost:27017`, como se puede observar, hay un documento creado para *age01_Car*
+
+![MongoDB_Compass age01_Car](img/20210907_200432.png)
+
+
 
 
