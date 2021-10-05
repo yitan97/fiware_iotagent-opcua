@@ -421,7 +421,7 @@ networks:
 ```
 ### Configuración **node-red** servidor **OPCUA**
 
-```json
+```typescript
 function constructAlarmAddressSpace(server, addressSpace, eventObjects, done) {
   // server = the created node-opcua server
   // addressSpace = address space of the node-opcua server
