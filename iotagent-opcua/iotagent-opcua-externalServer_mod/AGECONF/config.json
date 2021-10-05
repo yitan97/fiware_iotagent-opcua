@@ -1,0 +1,207 @@
+{
+  "logLevel" : "DEBUG",
+  "contextBroker" : {
+    "host" : "orion",
+    "port" : 1026
+  },
+  "server" : {
+    "port" : 4001,
+    "baseRoot" : "/"
+  },
+  "deviceRegistry" : {
+    "type" : "memory"
+  },
+  "mongodb" : {
+    "host" : "iotmongo",
+    "port" : "27017",
+    "db" : "iotagent",
+    "retries" : 5,
+    "retryTime" : 5
+  },
+  "types" : {
+    "1:Planta" : {
+      "service" : "opcua_fv",
+      "subservice" : "/supervision",
+      "active" : [ {
+        "name" : "1:Inverter0_1:Inputs_1:frecuencia",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Pot_Reactiva",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Pot_Activa",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Intensidad_ac",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Tension_ac",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Cos(fi)",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Inputs_1:Eficiencia",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt1",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt1",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt2",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt2",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt3",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt3",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt4",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt4",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Potencia_Mppt1",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Potencia_Mppt2",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Potencia_Mppt3",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Potencia_Mppt4",
+        "type" : "Number"
+      }, {
+        "name" : "1:Inverter0_1:Outputs_1:Pcc_total",
+        "type" : "Number"
+      } ],
+      "lazy" : [ ],
+      "commands" : [ ]
+    }
+  },
+  "browseServerOptions" : null,
+  "service" : "opcua_fv",
+  "subservice" : "/supervision",
+  "providerUrl" : "http://iotage:4001",
+  "pollingExpiration" : "200000",
+  "pollingDaemonFrequency" : "20000",
+  "deviceRegistrationDuration" : "P1M",
+  "defaultType" : null,
+  "contexts" : [ {
+    "id" : "powerPlant011:Planta",
+    "type" : "1:Planta",
+    "service" : "opcua_fv",
+    "subservice" : "/supervision",
+    "polling" : false,
+    "mappings" : [ {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:frecuencia",
+      "opcua_id" : "ns=1;s=f",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Pot_Reactiva",
+      "opcua_id" : "ns=1;s=Qac",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Pot_Activa",
+      "opcua_id" : "ns=1;s=Pac",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Intensidad_ac",
+      "opcua_id" : "ns=1;s=IRac",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Tension_ac",
+      "opcua_id" : "ns=1;s=VRac",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Cos(fi)",
+      "opcua_id" : "ns=1;s=Cos(fi)",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Inputs_1:Eficiencia",
+      "opcua_id" : "ns=1;s=Eficiencia",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt1",
+      "opcua_id" : "ns=1;s=Vcc1",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt1",
+      "opcua_id" : "ns=1;s=Icc1",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt2",
+      "opcua_id" : "ns=1;s=Vcc2",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt2",
+      "opcua_id" : "ns=1;s=Icc2",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt3",
+      "opcua_id" : "ns=1;s=Vcc3",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt3",
+      "opcua_id" : "ns=1;s=Icc3",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Tension_cc_Mppt4",
+      "opcua_id" : "ns=1;s=Vcc4",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Intensidad_cc_Mppt4",
+      "opcua_id" : "ns=1;s=Icc4",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Potencia_Mppt1",
+      "opcua_id" : "ns=1;s=Pcc1",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Potencia_Mppt2",
+      "opcua_id" : "ns=1;s=Pcc2",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Potencia_Mppt3",
+      "opcua_id" : "ns=1;s=Pcc3",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Potencia_Mppt4",
+      "opcua_id" : "ns=1;s=Pcc4",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    }, {
+      "ocb_id" : "1:Inverter0_1:Outputs_1:Pcc_total",
+      "opcua_id" : "ns=1;s=PccTotal",
+      "object_id" : null,
+      "inputArguments" : [ ]
+    } ]
+  } ],
+  "contextSubscriptions" : [ ]
+}
