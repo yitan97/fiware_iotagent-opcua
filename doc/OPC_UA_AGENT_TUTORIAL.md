@@ -1100,21 +1100,21 @@ Observando el fichero en el repositorio `iotagent-opcua/docker/Dockerfile` se pu
 
 **Por tanto, según la versión de iotagent4fiware/iotagent-opcua que se use, se deberá cambiar las rutas de los volumenes.**
 
-## Problemas con ficheros internos 
+## ~~Problemas con ficheros internos~~
 
-Como se pudo observar, en el método `GET` realizado al **iotagent**, se pasa el comando `-H 'fiware-servicepath: /demo'` y en el caso de atacar al **OrionCB** se le pasa el metodo `GET` con el comando `-H 'fiware-service-path: /demo'`, esto puede deberse a un error en el código fuente del **iotagent**, donde se haya definido `fiware-servicepath` en lugar de `fiware-service-path`
+~~Como se pudo observar, en el método `GET` realizado al **iotagent**, se pasa el comando `-H 'fiware-servicepath: /demo'` y en el caso de atacar al **OrionCB** se le pasa el metodo `GET` con el comando `-H 'fiware-service-path: /demo'`, esto puede deberse a un error en el código fuente del **iotagent**, donde se haya definido `fiware-servicepath` en lugar de `fiware-service-path`~~
 
-### Sustituir fiware-servicepath por fiware-service-path*******
+### ~~Sustituir fiware-servicepath por fiware-service-path*******~~
 
 > Esta parte está bajo estudio, aún no se ha conseguido ningún resultado.
 
-Para ello hay que modificar en todos los lugares donde aparece definido `fiware-servicepath` por `fiware-service-path` hay que modificar varios ficheros dentro del contenedor del **iotagent**.
+~~Para ello hay que modificar en todos los lugares donde aparece definido `fiware-servicepath` por `fiware-service-path` hay que modificar varios ficheros dentro del contenedor del **iotagent**.~~
 
-`/usr/src/app/iot-agent-modules/run/mongogroup.js`
+~~`/usr/src/app/iot-agent-modules/run/mongogroup.js`~~
 
-`/usr/src/app/tests/add-test.js`
+~~`/usr/src/app/tests/add-test.js`~~
 
-`/usr/src/app/tests/test.js`
+~~`/usr/src/app/tests/test.js`~~
 
 
 
